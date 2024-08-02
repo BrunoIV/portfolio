@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!--
+    1) Barra inferior (margenes, colores)
+    2) Búsqueda simple
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="background.css">
+    <link rel="stylesheet" href="iexplore.css">
+
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+        :root {
+            --footer-bg-color: #cbe4ee;
+            --footer-bg-color-hover: #eaf5f8;
+            --menu-bg-color: #e4e4e4;
+            --window-header-height: 36px;
+            --window-button-width: 36px;
+        }
+
+        body {
+            font-size: 14px;
+        }
+
+        input[type=text]:focus {
+            outline: none;
+        }
+
+        .border-light {
+            border-color: #ccc !important;
+        }
+
+        footer {
+            background-color: var(--footer-bg-color);
+            height: 40px;
+            width: 100%;
+        }
+
+        #logo_windows {
+            width: 50px;
+            height: 40px;
+            display: block;
+            font-size: 18px;
+            color: #000;
+            position: relative;
+        }
+  
+
+        #logo_windows:focus #menu {
+            display:block;
+        }
+
+        #menu {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 500px;
+            height: 400px;
+            background-color: var(--menu-bg-color);
+            display:none;
+        }
+
+        #menu .col-auto {
+            width: 50px;
+            text-align: center;
+        }
+
+        #menu .col-auto > i {
+            margin: 2px;
+            width: 46px;
+            height: 46px;
+            line-height: 46px;
+        }
+
+        #menu .col-auto > i:hover {
+            background-color: #f4f4f4;
+        }
+
+
+        /* Icono windows */
+        #logo_windows > i {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 40px;
+        }
+        #logo_windows > i:hover { color: #429ce3; }
+
+
+
+        footer #clock {
+            font-size: 12px;
+            width: 80px;
+            cursor: default;
+        }
+
+        footer #clock:hover, #apps > label:hover  {
+            background-color: var(--footer-bg-color-hover);
+        }
+
+
+        .no-border {
+            border: 0;
+            box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+        }
+
+
+        #apps > label {
+            display: block;
+            float: left;
+            height: 40px;
+            width: 40px;
+            margin: 0 1px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 22px;
+        }
+
+
+        input[type=radio], input[type=checkbox] {
+            display: none;
+        }
+
+        #apps input[type="checkbox"]:checked + label {
+            border-bottom: 2px solid red;
+        }
+
+        #apps input[type="checkbox"]:checked + label + .window {
+            visibility: visible !important;
+        }
+        
+
+        /*Carpetas del explora>*/
+        #apps input[type="radio"]:checked + label + div {
+            visibility: visible;
+        }
+
+
+        /* Oculta todos los elementos */
+        #apps input[type="checkbox"]:not(:checked) + label + div * {
+            visibility: hidden !important;
+        }
+
+
+        .window {
+            width: 500px;
+            height: 300px;
+            border: 3px solid red;
+            background-color: #fff;
+            visibility: hidden;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+
+
+        /*Al poner foco sobre la ventana se muestra por encima de las demás*/
+        .window:focus {
+            z-index: 99999999;
+        }
+   
+
+        .window .drag {
+            line-height: var(--window-header-height);
+        }
+
+        
+.window header {
+  width: 100%;
+  height: var(--window-header-height);
+  background-color: #fff;
+}
+
+/* Títulos + botones */
+.window header > label {
+  height: var(--window-header-height);
+  line-height: var(--window-header-height);
+}
+
+/* Botones de Minimize, Maximize, Close */
+.window header > label:not(:first-child) {
+  width: var(--window-button-width) !important;
+  text-align: center;
+}
+
+
+.window header > label:not(:first-child):hover {
+  background-color: #e5e5e5;
+}
+
+.window header > label:last-child:hover {
+  background-color: #e81123;
+  color: #fff;
+}
+
+    </style>
+</head>
+<body class="user-select-none">
+
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+
+    <div class="vh-100 d-flex flex-column">
+        <main id="desktop" class="flex-grow-1 h-100">
+
+          
+        </main>
+
+        
+
+        <footer>
+            <div tabindex="9999" id="logo_windows" class="float-start">
+                <i title="Inicio" class="fa-brands fa-windows"></i>
+
+                <div id="menu">
+                    <div class="row g-0">
+                        <div class="col-auto align-self-end">
+                            <i class="fa-regular fa-user"></i>
+                            <i class="fa-regular fa-file"></i>
+                            <i class="fa-regular fa-image"></i>
+                            <i class="fa-solid fa-gear"></i>
+                            <i class="fa-solid fa-power-off"></i>
+                        </div>
+            
+                        <div class="col">
+                            Columna 2 (Resto del espacio)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-100 float-start bg-white px-2">
+                <label for="search_bar" class="fa fa-search"></label>
+                <input id="search_bar" class="h-100 border-0 shadow-none" type="text" placeholder="Search">
+            </div>
+
+
+            <div id="apps">
+                
+                <input type="checkbox" id="check_users" autocomplete="off">
+                <label for="check_users" class="fa fa-globe"></label>
+                <div tabindex="0" class="window d-flex flex-column flex-grow-1" id="iexplore">
+
+                    <header class="row w-100 g-0">
+                        <div class="drag col px-2"><i class="fa fa-file"></i> Web Browser</div>
+                        <label title="Minimize">-</label>
+                        <label title="Maximize">+</label>
+                        <label for="check_iexplorer" title="Close">x</label>
+                    </header>
+
+                    <section class="h-100 flex-grow-1">
+                        <iframe class="border-0 w-100 h-100 bg-danger" src="https://www.fiz-karlsruhe.de/en/ueber-uns/unsere-stellenangebote"></iframe>
+                    </section>
+                </div>
+
+                
+                <input type="checkbox" id="check_iexplorer" autocomplete="off" checked>
+                <label for="check_iexplorer" class="fa fa-folder"></label>
+                <div tabindex="0" class="window d-flex flex-column flex-grow-1" id="iexplore">
+
+                    <header class="row w-100 g-0">
+                        <div class="drag col px-2"><i class="fa fa-file"></i> File Manager</div>
+                        <label title="Minimize">-</label>
+                        <label title="Maximize">+</label>
+                        <label for="check_iexplorer" title="Close">x</label>
+                    </header>
+
+                    <nav class="p-2 row w-100 g-0 border-top border-bottom border-light">
+                        <div>
+                            <button title="Back"><i class="fa-solid fa-arrow-left"></i></button>
+                            <button title="Next"><i class="fa-solid fa-arrow-right"></i></button>
+                            <button title="Up"><i class="fa-solid fa-arrow-up"></i></button>
+                        </div>
+    
+                        <div class="col border border-light">
+                            <div class="row w-100 g-0">
+                                <div class="col col-auto">
+                                    <span class="p-1 fa fa-search"></span>
+                                </div>
+                                <input class="col border-0" type="text" value="Search" readonly="readonly">
+                            </div>
+                        </div>
+                    </nav>
+    
+                    <section class="h-100 flex-grow-1">
+                        <aside class="py-4 w-100 g-0 h-100" style="position: relative;">
+                            <input checked="checked" name="radio_folders" type="radio" id="check_desktop">
+                            <label for="check_desktop"><i class="fa-solid fa-desktop"></i> Desktop</label>
+                            <div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Projects
+                                </div>
+            
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Backup
+                                </div>
+                            </div>
+
+                            <input name="radio_folders" type="radio" id="check_downloads">
+                            <label for="check_downloads"><i class="fa-solid fa-download"></i> Downloads</label>
+                            <div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    New Folder
+                                </div>
+                            </div>
+
+                            <input name="radio_folders" type="radio" id="check_documents">
+                            <label for="check_documents"><i class="fa-solid fa-file"></i> Documents</label>
+                            <div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Important
+                                </div>
+
+                                <div class="icon">
+                                    <i class="far fa-file-pdf"></i>
+                                    CV
+                                </div>
+                            </div>
+
+                            <input name="radio_folders" type="radio" id="check_images">
+                            <label for="check_images"><i class="fa-regular fa-image"></i> Pictures</label>
+                            <div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Photos
+                                </div>
+                            </div>
+
+                            <input name="radio_folders" type="radio" id="check_videos">
+                            <label for="check_videos"><i class="fa-solid fa-film"></i> Videos</label>
+                            <div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Movies
+                                </div>
+                            </div>
+
+                        </aside>
+                    </section>
+                </div>
+            </div>
+            <div class="h-100 d-block border-start border-light float-end" title="Mostrar escritorio">
+                &nbsp;
+            </div>
+            
+            <div id="clock" class="h-100 text-center float-end">
+                <span class="align-middle" >17:26<br>
+                01/08/2024
+                </span>
+            </div>
+            
+        </footer>
+    </div>
+
+    
+    <script>
+        document.querySelectorAll('.window').forEach(windowElement => {
+          const header = windowElement.querySelectorAll('.drag')[0];
+          let offsetX, offsetY, isDragging = false;
+      
+          header.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            const rect = windowElement.getBoundingClientRect();
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+            header.style.cursor = 'grabbing';
+          });
+      
+          document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+              windowElement.style.left = `${e.clientX - offsetX}px`;
+              windowElement.style.top = `${e.clientY - offsetY}px`;
+            }
+          });
+      
+          document.addEventListener('mouseup', () => {
+            isDragging = false;
+            header.style.cursor = 'grab';
+          });
+        });
+      </script>
+</body>
+</html>
