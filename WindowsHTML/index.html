@@ -32,7 +32,7 @@
             font-size: 14px;
         }
 
-        input[type=text]:focus {
+        input[type=text]:focus, textarea:focus {
             outline: none;
         }
 
@@ -156,7 +156,6 @@
         .window {
             width: 500px;
             height: 300px;
-            border: 3px solid red;
             background-color: #fff;
             visibility: hidden;
             position: absolute;
@@ -261,19 +260,19 @@
 
             <div id="apps">
                 
-                <input type="checkbox" id="check_users" autocomplete="off">
-                <label for="check_users" class="fa fa-globe"></label>
-                <div tabindex="0" class="window d-flex flex-column flex-grow-1" id="iexplore">
+                <input type="checkbox" id="check_editor" autocomplete="off">
+                <label for="check_editor" class="fa fa-file"></label>
+                <div tabindex="0" class="window d-flex flex-column flex-grow-1">
 
-                    <header class="row w-100 g-0">
-                        <div class="drag col px-2"><i class="fa fa-file"></i> Web Browser</div>
+                    <header class="row w-100 g-0 border-bottom border-light">
+                        <div class="drag col px-2"><i class="fa fa-file"></i> Editor</div>
                         <label title="Minimize">-</label>
                         <label title="Maximize">+</label>
-                        <label for="check_iexplorer" title="Close">x</label>
+                        <label for="check_editor" title="Close">x</label>
                     </header>
 
                     <section class="h-100 flex-grow-1">
-                        <iframe class="border-0 w-100 h-100 bg-danger" src="https://www.fiz-karlsruhe.de/en/ueber-uns/unsere-stellenangebote"></iframe>
+                        <textarea class="border-0 w-100 h-100">https://www.fiz-karlsruhe.de/en</textarea>
                     </section>
                 </div>
 
@@ -283,7 +282,7 @@
                 <div tabindex="0" class="window d-flex flex-column flex-grow-1" id="iexplore">
 
                     <header class="row w-100 g-0">
-                        <div class="drag col px-2"><i class="fa fa-file"></i> File Manager</div>
+                        <div class="drag col px-2"><i class="fa fa-folder"></i> File Manager</div>
                         <label title="Minimize">-</label>
                         <label title="Maximize">+</label>
                         <label for="check_iexplorer" title="Close">x</label>
