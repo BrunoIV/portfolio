@@ -1,0 +1,43 @@
+#logo_windows:focus #start_menu {
+    display:block;
+}
+
+#start_menu {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 500px;
+    height: 400px;
+    background-color: var(--menu-bg-color);
+    display:none;
+    z-index: 99999999;
+}
+
+#start_menu .col-auto {
+    width: 50px;
+    text-align: center;
+}
+
+#start_menu .col-auto > i {
+    margin: 2px;
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+}
+
+#start_menu .col-auto > i:hover {
+    background-color: #f4f4f4;
+}
+
+/* List of apps */
+#start_menu .col a {
+    width: 100%;
+    line-height: 30px;
+    height: 30px;
+    border: 1px solid red;
+    display: inline-block;
+}
+
+#start_menu .col a:hover {
+    background-color: red;
+}

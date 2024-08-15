@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="iexplore.css">
-
+    <link rel="stylesheet" href="start_menu.css">
 
     <style>
 
@@ -55,37 +55,6 @@
             position: relative;
         }
   
-
-        #logo_windows:focus #menu {
-            display:block;
-        }
-
-        #menu {
-            position: absolute;
-            bottom: 40px;
-            left: 0;
-            width: 500px;
-            height: 400px;
-            background-color: var(--menu-bg-color);
-            display:none;
-        }
-
-        #menu .col-auto {
-            width: 50px;
-            text-align: center;
-        }
-
-        #menu .col-auto > i {
-            margin: 2px;
-            width: 46px;
-            height: 46px;
-            line-height: 46px;
-        }
-
-        #menu .col-auto > i:hover {
-            background-color: #f4f4f4;
-        }
-
 
         /* Icono windows */
         #logo_windows > i {
@@ -149,18 +118,27 @@
 
         /* Oculta todos los elementos */
         #apps input[type="checkbox"]:not(:checked) + label + div * {
-            visibility: hidden !important;
+            visibility: hidden;
         }
 
 
+
+        #textEditor:target, #textEditor:target * {
+            visibility: visible !important;
+        }
+
         .window {
-            width: 500px;
-            height: 300px;
+            width: 700px;
+            height: 400px;
             background-color: #fff;
             visibility: hidden;
             position: absolute;
             left: 50%;
             top: 50%;
+            resize: both;
+            overflow: hidden;
+            min-width: 300px;
+            min-height: 300px;
         }
 
 
@@ -174,7 +152,7 @@
             line-height: var(--window-header-height);
         }
 
-        
+
 .window header {
   width: 100%;
   height: var(--window-header-height);
@@ -235,8 +213,8 @@
             <div tabindex="9999" id="logo_windows" class="float-start">
                 <i title="Inicio" class="fa-brands fa-windows"></i>
 
-                <div id="menu">
-                    <div class="row g-0">
+                <div id="start_menu">
+                    <div class="row g-0 h-100">
                         <div class="col-auto align-self-end">
                             <i class="fa-regular fa-user"></i>
                             <i class="fa-regular fa-file"></i>
@@ -246,7 +224,7 @@
                         </div>
             
                         <div class="col">
-                            Columna 2 (Resto del espacio)
+                            <label for="web_browser">Web Browser</label>
                         </div>
                     </div>
                 </div>
@@ -259,10 +237,26 @@
 
 
             <div id="apps">
+
+
+                <div id="textEditor" tabindex="0" class="window d-flex flex-column flex-grow-1">
+
+                    <header class="row w-100 g-0 border-bottom border-light">
+                        <div class="drag col px-2"><i class="fa fa-file"></i> Editor</div>
+                        <label title="Minimize">-</label>
+                        <label title="Maximize">+</label>
+                        <label for="check_editor" title="Close">x</label>
+                    </header>
+
+                    <section class="h-100 flex-grow-1">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=tF9047QyolWokZCy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </section>
+                </div>
+
                 
                 <input type="checkbox" id="check_editor" autocomplete="off">
                 <label for="check_editor" class="fa fa-file"></label>
-                <div tabindex="0" class="window d-flex flex-column flex-grow-1">
+                <div class="window d-flex flex-column flex-grow-1">
 
                     <header class="row w-100 g-0 border-bottom border-light">
                         <div class="drag col px-2"><i class="fa fa-file"></i> Editor</div>
@@ -366,7 +360,7 @@
                     </section>
                 </div>
             </div>
-            <div class="h-100 d-block border-start border-light float-end" title="Mostrar escritorio">
+            <div class="h-100 d-block border-start border-light float-end" title="Show Desktop">
                 &nbsp;
             </div>
             
