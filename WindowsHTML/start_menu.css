@@ -30,7 +30,7 @@
 }
 
 /* List of apps */
-#start_menu .col a {
+#start_menu .col label {
     width: 100%;
     line-height: 30px;
     height: 30px;
@@ -38,6 +38,6 @@
     display: inline-block;
 }
 
-#start_menu .col a:hover {
+#start_menu .col label:hover {
     background-color: red;
 }

@@ -123,7 +123,7 @@
 
 
 
-        #textEditor:target, #textEditor:target * {
+        #videoPlayer:target, #videoPlayer:target * {
             visibility: visible !important;
         }
 
@@ -177,8 +177,15 @@
 }
 
 .window header > label:last-child:hover {
-  background-color: #e81123;
+  background-color: #eeced1;
   color: #fff;
+}
+
+
+
+#videoPlayer iframe {
+    width: 100%;
+    height: 100%;
 }
 
     </style>
@@ -225,6 +232,7 @@
             
                         <div class="col">
                             <label for="web_browser">Web Browser</label>
+                            <label for="check_videoplayer">Video Player</label>
                         </div>
                     </div>
                 </div>
@@ -239,17 +247,20 @@
             <div id="apps">
 
 
-                <div id="textEditor" tabindex="0" class="window d-flex flex-column flex-grow-1">
+
+                <input type="checkbox" id="check_videoplayer" autocomplete="off">
+                <label class="d-none"></label>
+                <div id="videoPlayer" tabindex="0" class="window d-flex flex-column flex-grow-1">
 
                     <header class="row w-100 g-0 border-bottom border-light">
-                        <div class="drag col px-2"><i class="fa fa-file"></i> Editor</div>
+                        <div class="drag col px-2"><i class="fa fa-video"></i> Video Player</div>
                         <label title="Minimize">-</label>
                         <label title="Maximize">+</label>
-                        <label for="check_editor" title="Close">x</label>
+                        <label for="check_videoplayer" title="Close">x</label>
                     </header>
 
                     <section class="h-100 flex-grow-1">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=tF9047QyolWokZCy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/xvFZjo5PgG0?si=hO6MzFaXxuidUIdN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                    
                     </section>
                 </div>
 
