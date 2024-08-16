@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!--
-    1) Barra inferior (margenes, colores)
-    2) Búsqueda simple
--->
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -15,6 +10,7 @@
     <link rel="stylesheet" href="background.css">
     <link rel="stylesheet" href="iexplore.css">
     <link rel="stylesheet" href="start_menu.css">
+    <link rel="stylesheet" href="window.css">
 
     <style>
 
@@ -97,29 +93,23 @@
         }
 
 
+        /* :focus doesn't work with display:none or visibility: hidden*/
         input[type=radio], input[type=checkbox] {
-            display: none;
+            position: absolute;
+            left: -50px;
+            opacity: 0;
+            width: 0;
+            height: 0;
         }
 
-        #apps input[type="checkbox"]:checked + label {
+        #apps .check_close:checked + label {
             border-bottom: 2px solid red;
         }
 
-        #apps input[type="checkbox"]:checked + label + .window {
+        #apps .check_close:checked + label + .window {
             visibility: visible !important;
         }
-        
 
-        /*Carpetas del explora>*/
-        #apps input[type="radio"]:checked + label + div {
-            visibility: visible;
-        }
-
-
-        /* Oculta todos los elementos */
-        #apps input[type="checkbox"]:not(:checked) + label + div * {
-            visibility: hidden;
-        }
 
 
 
@@ -127,60 +117,7 @@
             visibility: visible !important;
         }
 
-        .window {
-            width: 700px;
-            height: 400px;
-            background-color: #fff;
-            visibility: hidden;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            resize: both;
-            overflow: hidden;
-            min-width: 300px;
-            min-height: 300px;
-        }
-
-
-        /*Al poner foco sobre la ventana se muestra por encima de las demás*/
-        .window:focus {
-            z-index: 99999999;
-        }
-   
-
-        .window .drag {
-            line-height: var(--window-header-height);
-        }
-
-
-.window header {
-  width: 100%;
-  height: var(--window-header-height);
-  background-color: #fff;
-}
-
-/* Títulos + botones */
-.window header > label {
-  height: var(--window-header-height);
-  line-height: var(--window-header-height);
-}
-
-/* Botones de Minimize, Maximize, Close */
-.window header > label:not(:first-child) {
-  width: var(--window-button-width) !important;
-  text-align: center;
-}
-
-
-.window header > label:not(:first-child):hover {
-  background-color: #e5e5e5;
-}
-
-.window header > label:last-child:hover {
-  background-color: #eeced1;
-  color: #fff;
-}
-
+       
 
 
 #videoPlayer iframe {
@@ -248,14 +185,15 @@
 
 
 
-                <input type="checkbox" id="check_videoplayer" autocomplete="off">
+                <input type="checkbox" class="check_maximize" id="maximize_videoplayer" autocomplete="off">
+                <input type="checkbox" class="check_close" id="check_videoplayer" autocomplete="off">
                 <label class="d-none"></label>
                 <div id="videoPlayer" tabindex="0" class="window d-flex flex-column flex-grow-1">
 
                     <header class="row w-100 g-0 border-bottom border-light">
                         <div class="drag col px-2"><i class="fa fa-video"></i> Video Player</div>
                         <label title="Minimize">-</label>
-                        <label title="Maximize">+</label>
+                        <label for="maximize_videoplayer" title="Maximize">+</label>
                         <label for="check_videoplayer" title="Close">x</label>
                     </header>
 
@@ -265,14 +203,15 @@
                 </div>
 
                 
-                <input type="checkbox" id="check_editor" autocomplete="off">
+                <input type="checkbox" class="check_maximize" id="maximize_editor" autocomplete="off">
+                <input class="check_close" type="checkbox" id="check_editor" autocomplete="off">
                 <label for="check_editor" class="fa fa-file"></label>
-                <div class="window d-flex flex-column flex-grow-1">
+                <div tabindex="0" class="window d-flex flex-column flex-grow-1">
 
                     <header class="row w-100 g-0 border-bottom border-light">
                         <div class="drag col px-2"><i class="fa fa-file"></i> Editor</div>
                         <label title="Minimize">-</label>
-                        <label title="Maximize">+</label>
+                        <label for="maximize_editor" title="Maximize">+</label>
                         <label for="check_editor" title="Close">x</label>
                     </header>
 
@@ -282,14 +221,15 @@
                 </div>
 
                 
-                <input type="checkbox" id="check_iexplorer" autocomplete="off" checked>
+                <input type="checkbox" class="check_maximize" id="maximize_iexplorer" autocomplete="off">
+                <input type="checkbox" class="check_close" id="check_iexplorer" autocomplete="off" checked>
                 <label for="check_iexplorer" class="fa fa-folder"></label>
                 <div tabindex="0" class="window d-flex flex-column flex-grow-1" id="iexplore">
 
                     <header class="row w-100 g-0">
                         <div class="drag col px-2"><i class="fa fa-folder"></i> File Manager</div>
                         <label title="Minimize">-</label>
-                        <label title="Maximize">+</label>
+                        <label for="maximize_iexplorer" title="Maximize">+</label>
                         <label for="check_iexplorer" title="Close">x</label>
                     </header>
 

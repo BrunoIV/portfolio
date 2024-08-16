@@ -1,9 +1,5 @@
 #iexplore {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 500px;
-  height: 300px;
   background-color: #fff;
   display: block;
   border: 0;
@@ -77,9 +73,10 @@
 }
 
      
-
-
-
+/* Display the folder panel depending of selected radio */
+#iexplore input[type="radio"]:checked + label + div {
+  visibility: visible;
+}
 
 
 #iexplore button {

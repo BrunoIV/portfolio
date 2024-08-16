@@ -32,12 +32,12 @@
 /* List of apps */
 #start_menu .col label {
     width: 100%;
-    line-height: 30px;
-    height: 30px;
-    border: 1px solid red;
+    line-height: 36px;
+    height: 36px;
     display: inline-block;
+    padding: 0 10px;
 }
 
 #start_menu .col label:hover {
-    background-color: red;
+    background-color:#f4f4f4;
 }

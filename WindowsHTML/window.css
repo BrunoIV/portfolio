@@ -1,0 +1,77 @@
+.window {
+    background-color: #fff;
+    visibility: hidden;
+    position: absolute;
+    resize: both;
+    overflow: hidden;
+    min-width: 300px;
+    min-height: 300px;
+
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    top: 25%;
+}
+
+
+/* puts the focused window over the other windows (but not over the start menu) */
+.window:focus {
+    z-index: 99999998;
+}
+
+
+.window .drag {
+    line-height: var(--window-header-height);
+}
+
+
+.window header {
+    width: 100%;
+    height: var(--window-header-height);
+    background-color: #fff;
+}
+
+/* title and buttons */
+.window header > label {
+    height: var(--window-header-height);
+    line-height: var(--window-header-height);
+}
+
+/* Minimize, Maximize and Close */
+.window header > label:not(:first-child) {
+    width: var(--window-button-width) !important;
+    text-align: center;
+}
+
+
+.window header > label:not(:first-child):hover {
+    background-color: #e5e5e5;
+}
+
+.window header > label:last-child:hover {
+    background-color: #eeced1;
+    color: #fff;
+}
+
+
+/* Focus windows when maximize or open the app */
+#apps .check_close:focus + label + .window, 
+#apps .check_maximize:focus + input  + label + .window {
+    z-index: 99999999;
+}
+
+/* Maximize button */
+#apps .check_maximize:checked + input + label + .window {
+    width: 100% !important;
+    height: calc(100% - 40px) !important;
+    left: 0 !important;
+    top: 0 !important;
+}
+
+
+/* Hidden window content */
+#apps .check_close:not(:checked) + label + div * {
+    visibility: hidden !important;
+}
+
+        
