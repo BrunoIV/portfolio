@@ -326,6 +326,20 @@
 
     
     <script>
+    
+       // Función para cargar el contenido del archivo
+        async function loadContent() {
+            const response = await fetch('https://raw.githubusercontent.com/BrunoIV/Scripts/refs/heads/master/Sonar/unnecessary_cast_list.sh');
+            if (response.ok) {
+                const text = await response.text();
+                console.log(text);
+            }
+        }
+
+        // Cargar el contenido cuando se cargue la página
+        window.onload = loadContent;
+    
+    
         document.querySelectorAll('.window').forEach(windowElement => {
           const header = windowElement.querySelectorAll('.drag')[0];
           let offsetX, offsetY, isDragging = false;
